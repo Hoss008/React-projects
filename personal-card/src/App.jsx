@@ -6,7 +6,7 @@ import styles from "./PersonalCard.module.css";
 
 function PersonalCard({ isAvailable = true }) {
 
-  const skills = ["React" , "Node" , "MongoDB" , "JavaScript"]
+  const skills = ["React" , "Node" , "MongoDB" , "JavaScript" , "ExpressJS"]
    
   return (
     <>
