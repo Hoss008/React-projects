@@ -5,6 +5,9 @@ import viteLogo from "/vite.svg";
 import styles from "./PersonalCard.module.css";
 
 function PersonalCard({ isAvailable = true }) {
+
+  const skills = ["React" , "Node" , "MongoDB" , "JavaScript"]
+   
   return (
     <>
       <div className={styles.card}>
@@ -15,10 +18,9 @@ function PersonalCard({ isAvailable = true }) {
         <div className={styles.skillsSection}>
           <p className={styles.skillsTitle}>Skills</p>
           <ul className={styles.skillsList}>
-            <li className={styles.skillTag}>React</li>
-            <li className={styles.skillTag}>Node.js</li>
-            <li className={styles.skillTag}>MongoDB</li>
-            <li className={styles.skillTag}>JavaScript</li>
+            {skills.map((skill)=>( 
+              <li className={styles.skillTag} key={skill}> {skill} </li>
+            ))}
           </ul>
         </div>
 
