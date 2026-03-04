@@ -1,12 +1,19 @@
 import styles from "./ProductCard.module.css";
 
-function ProductCard() {
-  imageUrl =
-    "https://plus.unsplash.com/premium_photo-1681313825348-7f2fe67e4e8f?q=80&w=2216&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
+function ProductCard({ imageUrl, title, description, onAddToCart }) {
   return (
-    <div className={styles.header}>
-      <img className={styles.image} src={imageUrl} alt="A description of the image for accessibility" />
+    <div className={styles.productCard}>
+      <img className={styles.image} src={imageUrl} alt={title} />
+
+      <div className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+      </div>
+
+      <p className={styles.description}>{description}</p>
+
+      <button className={styles.button} onClick={onAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 }
