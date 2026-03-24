@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
 
@@ -7,7 +7,10 @@ function App() {
 
   return (
     <>
-      <HomePage />
+    <Routes>
+    <Route index element={<HomePage />} />
+    <Route path="checkout" element={<div>test</div>} />
+    </Routes>
     </>
   )
 }
