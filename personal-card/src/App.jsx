@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 // import './App.css'
 import styles from "./PersonalCard.module.css";
 
-function PersonalCard({ isAvailable = true }) {
+function PersonalCard({ isAvailable = false }) {
 
   const skills = ["React" , "Node" , "MongoDB" , "JavaScript" , "ExpressJS"]
    
