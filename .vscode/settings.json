@@ -1,0 +1,17 @@
+{
+  "github.copilot.chat.defaultModel": "gpt-4o",
+  "github.copilot.selectedModels": {
+    "chat": "gpt-4o",
+    "inline": "gpt-4o-mini"
+  },
+  "github.copilot.chat.models": [
+    "gpt-4o",
+    "gpt-4o-mini",
+    "o1",
+    "o1-mini",
+    "o3-mini",
+    "claude-3.5-sonnet",
+    "claude-3.7-sonnet",
+    "gemini-2.0-flash"
+  ]
+}
