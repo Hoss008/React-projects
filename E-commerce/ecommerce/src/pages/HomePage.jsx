@@ -1,17 +1,22 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import "./HomePage.css";
-import { products } from "../../../starting-code/ecommerce-project-main/data/products";
 
-function HomePage() {
-  axios.get("http://localhost:3000/products")
-  .then((response) => {
-    console.log(response.data)
-  });
+function HomePage({ cartItems }) {
+  const [products, setProducts] = useState([]);
+
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+
+}, []);
 
   return (
     <>
-      <Header />
+      <Header cart={cartItems} />
       <div className="home-page">
         <div className="products-grid">
           {products.map((product) => (
