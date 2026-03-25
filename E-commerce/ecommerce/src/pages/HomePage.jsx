@@ -6,14 +6,19 @@ import { formatMoney } from "../utils/money";
 
 function HomePage({ cartItems }) {
   const [products, setProducts] = useState([]);
-
-
   useEffect(() => {
-    axios.get("http://localhost:3000/api/products").then((response) => {
-      setProducts(response.data);
-    });
+    const getHomeData = async () => {
+      try {
+        const response = await axios.get("/api/products");
+        setProducts(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        console.error("Failed to load products", error);
+        setProducts([]);
+      }
+    };
 
-}, []);
+    getHomeData();
+  }, []);
 
   return (
     <>
