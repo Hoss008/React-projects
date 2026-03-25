@@ -4,7 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { formatMoney } from "../utils/money";
 
-function CheckoutPage({ cartItems }) {
+function CheckoutPage({
+  cartItems,
+  onUpdateCartItem,
+  onDeleteCartItem,
+  onUpdateDeliveryOption,
+}) {
   const [deliveryOption, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState({
     totalItems: 0,
@@ -14,18 +19,58 @@ function CheckoutPage({ cartItems }) {
     taxCents: 0,
     totalCostCents: 0,
   });
+
   useEffect(() => {
     axios
-      .get(
-        "http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime",
-      )
+      .get("/api/delivery-options?expand=estimatedDeliveryTime")
       .then((response) => {
         setDeliveryOption(response.data);
       });
-    axios.get("http://localhost:3000/api/payment-summary").then((response) => {
+  }, []);
+
+  useEffect(() => {
+    axios.get("/api/payment-summary").then((response) => {
       setPaymentSummary(response.data);
     });
-  }, []);
+  }, [cartItems]);
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleUpdateQuantity = async (productId, currentQuantity) => {
+    const nextQuantity = Number(
+      window.prompt("Enter quantity (1-10)", currentQuantity),
+    );
+    if (
+      !Number.isInteger(nextQuantity) ||
+      nextQuantity < 1 ||
+      nextQuantity > 10
+    ) {
+      return;
+    }
+
+    try {
+      await onUpdateCartItem(productId, nextQuantity);
+    } catch (error) {
+      console.error("Failed to update quantity", error);
+    }
+  };
+
+  const handleDeleteItem = async (productId) => {
+    try {
+      await onDeleteCartItem(productId);
+    } catch (error) {
+      console.error("Failed to delete cart item", error);
+    }
+  };
+
+  const handleUpdateDeliveryOption = async (productId, deliveryOptionId) => {
+    try {
+      await onUpdateDeliveryOption(productId, deliveryOptionId);
+    } catch (error) {
+      console.error("Failed to update delivery option", error);
+    }
+  };
+
   return (
     <>
       <title>Checkout</title>
@@ -41,7 +86,7 @@ function CheckoutPage({ cartItems }) {
           <div className="checkout-header-middle-section">
             Checkout (
             <a className="return-to-home-link" href="/">
-              3 items
+              {totalItems} items
             </a>
             )
           </div>
@@ -91,10 +136,18 @@ function CheckoutPage({ cartItems }) {
                             {item.quantity}
                           </span>
                         </span>
-                        <span className="update-quantity-link link-primary">
+                        <span
+                          className="update-quantity-link link-primary"
+                          onClick={() =>
+                            handleUpdateQuantity(item.productId, item.quantity)
+                          }
+                        >
                           Update
                         </span>
-                        <span className="delete-quantity-link link-primary">
+                        <span
+                          className="delete-quantity-link link-primary"
+                          onClick={() => handleDeleteItem(item.productId)}
+                        >
                           Delete
                         </span>
                       </div>
@@ -125,7 +178,12 @@ function CheckoutPage({ cartItems }) {
                             <input
                               type="radio"
                               checked={isChecked}
-                              readOnly
+                              onChange={() =>
+                                handleUpdateDeliveryOption(
+                                  item.productId,
+                                  option.id,
+                                )
+                              }
                               className="delivery-option-input"
                               name={`delivery-option-${item.productId}`}
                             />

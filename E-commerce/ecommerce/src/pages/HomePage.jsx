@@ -4,8 +4,9 @@ import Header from "../components/Header";
 import "./HomePage.css";
 import { formatMoney } from "../utils/money";
 
-function HomePage({ cartItems }) {
+function HomePage({ cartItems, onAddToCart }) {
   const [products, setProducts] = useState([]);
+  const [selectedQuantities, setSelectedQuantities] = useState({});
   useEffect(() => {
     const getHomeData = async () => {
       try {
@@ -19,6 +20,23 @@ function HomePage({ cartItems }) {
 
     getHomeData();
   }, []);
+
+  const getSelectedQuantity = (productId) => selectedQuantities[productId] ?? 1;
+
+  const handleQuantityChange = (productId, quantity) => {
+    setSelectedQuantities((prev) => ({
+      ...prev,
+      [productId]: quantity,
+    }));
+  };
+
+  const handleAddToCart = async (productId) => {
+    try {
+      await onAddToCart(productId, getSelectedQuantity(productId));
+    } catch (error) {
+      console.error("Failed to add item to cart", error);
+    }
+  };
 
   return (
     <>
@@ -50,7 +68,12 @@ function HomePage({ cartItems }) {
               </div>
 
               <div className="product-quantity-container">
-                <select>
+                <select
+                  value={getSelectedQuantity(product.id)}
+                  onChange={(event) =>
+                    handleQuantityChange(product.id, Number(event.target.value))
+                  }
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -71,7 +94,10 @@ function HomePage({ cartItems }) {
                 Added
               </div>
 
-              <button className="add-to-cart-button button-primary">
+              <button
+                className="add-to-cart-button button-primary"
+                onClick={() => handleAddToCart(product.id)}
+              >
                 Add to Cart
               </button>
             </div>
