@@ -1,29 +1,66 @@
-import './App.css'
-import BaseCard from './components/BaseCard'
-import ProductCard from './components/ProductCard'
-import UserCard from './components/UserCard';
+import styles from "./styles.module.css";
 
-function App() {
-  return (
-    <div className="cardGrid">
-      <BaseCard>
-        <ProductCard
-          imageUrl="https://plus.unsplash.com/premium_photo-1681313825348-7f2fe67e4e8f?q=80&w=2216&auto=format&fit=crop"
-          title="iPhone 17"
-          description="iPhone 17 with 512 GB and 12 GB of RAM"
-          onAddToCart={() => console.log("Added to cart!")}
-        />
-      </BaseCard>
-
-      <BaseCard>
-        <UserCard
-          name="Hossam Hassan"
-          role="Software Engineer"
-          skills={["JS", "MongoDB", "ReactJS", "DSA"]}
-        />
-      </BaseCard>
-    </div>
-  )
+function BaseCard({ children }) {
+  return <div className={styles.card}>{children}</div>;
 }
 
-export default App
+function ProductCard({
+  title = "Untitled Product",
+  price = 0,
+  isAvailable = false,
+}) {
+  return (
+    <BaseCard>
+      <h2 className={styles.title}>{title}</h2>
+      <p className={styles.price}>${price}</p>
+      <span
+        className={`${styles.badge} ${
+          isAvailable ? styles.available : styles.unavailable
+        }`}
+      >
+        {isAvailable ? "Available" : "Unavailable"}
+      </span>
+    </BaseCard>
+  );
+}
+
+function UserCard({ name, role, bio }) {
+  return (
+    <BaseCard>
+      <h2 className={styles.title}>{name}</h2>
+      <p className={styles.text}>{role}</p>
+      <p className={styles.meta}>{bio}</p>
+    </BaseCard>
+  );
+}
+
+function BlogCard({ title, summary, date }) {
+  return (
+    <BaseCard>
+      <h2 className={styles.title}>{title}</h2>
+      <p className={styles.text}>{summary}</p>
+      <p className={styles.meta}>{date}</p>
+    </BaseCard>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <ProductCard title="MacBook Air M4" price={99} isAvailable={true} />
+      <ProductCard title="MacBook Air M5" price={150} isAvailable={false} />
+      <UserCard
+        role="Developer"
+        bio="React JS Developer Will Join The FAANG Soon ISA"
+      />
+      <BlogCard
+        title="How I Became a React Developer"
+        summary="My journey from basics to building real-world applications with React."
+        date="March 2026"
+      />
+    </>
+  );
+}
+ // 2 different ways for creating props ?
+      // <ProductCard title={tile} price={price} ??? and the child renders the contnet />
+ // 

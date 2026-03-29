@@ -1,0 +1,61 @@
+.card {
+  background: #111;
+  color: #fff;
+  width: 320px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* COMMON ELEMENTS */
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+/* TAG / META INFO */
+
+.meta {
+  font-size: 12px;
+  color: #888;
+}
+
+/* PRICE STYLE */
+
+.price {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/* BADGE (reusable again) */
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-top: 8px;
+}
+
+.available {
+  background: #16a34a;
+}
+
+.unavailable {
+  background: #444;
+}
