@@ -107,7 +107,9 @@ function ShopCartTask() {
 
   const addToCart = (productId) => {
     setCartItems((currentItems) => {
-      const matchingItem = currentItems.find((item) => item.productId === productId);
+      const matchingItem = currentItems.find(
+        (item) => item.productId === productId,
+      );
 
       if (!matchingItem) {
         return [...currentItems, { productId, quantity: 1 }];
@@ -125,7 +127,9 @@ function ShopCartTask() {
 
   const removeFromCart = (productId) => {
     setCartItems((currentItems) => {
-      const matchingItem = currentItems.find((item) => item.productId === productId);
+      const matchingItem = currentItems.find(
+        (item) => item.productId === productId,
+      );
 
       if (!matchingItem) {
         return currentItems;
@@ -148,7 +152,9 @@ function ShopCartTask() {
   const mappedCartItems = useMemo(() => {
     return cartItems
       .map((item) => {
-        const product = products.find((candidate) => candidate.id === item.productId);
+        const product = products.find(
+          (candidate) => candidate.id === item.productId,
+        );
 
         if (!product) {
           return null;
@@ -169,7 +175,7 @@ function ShopCartTask() {
   const totalPrice = useMemo(() => {
     return mappedCartItems.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
-      0
+      0,
     );
   }, [mappedCartItems]);
 
@@ -179,7 +185,8 @@ function ShopCartTask() {
         <p className="shop-eyebrow">Migrated Task</p>
         <h3>Shopping cart component structure</h3>
         <p className="shop-subtitle">
-          This task now runs inside your Task Hub route using one shared React app.
+          This task now runs inside your Task Hub route using one shared React
+          app.
         </p>
       </header>
 
@@ -241,7 +248,11 @@ function ShopCartTask() {
           </div>
 
           <div className="shop-cart-footer">
-            <button type="button" className="shop-button" disabled={!totalItems}>
+            <button
+              type="button"
+              className="shop-button"
+              disabled={!totalItems}
+            >
               Checkout
             </button>
           </div>
