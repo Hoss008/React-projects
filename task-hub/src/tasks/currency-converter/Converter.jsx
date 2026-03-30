@@ -1,33 +1,30 @@
-import { useEffect, useState } from "react";
-import styles from "./converter.module.css";
+import { useEffect,useState } from "react";
+import "./converter.module.css";
 
-function ConverterTask() {
-  const [amount, setAmount] = useState("");
-  const [fromCurrency, setFromCurrency] = useState("");
-  const [toCurrency, setToCurrency] = useState("");
-
-  const handleInput = (event) => {
-    setAmount(event.target.value);
-  };
+export default function App() {
+const [amount, setAmount] = useState(1)
+  const [fromCurrency, setFromCurrency] = useState("EUR")
+  const [toCurrency, setToCurrency] = useState("USD")
+  const [rate, setRate] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        "https://api.frankfurter.app/latest?amount=100&from=EUR&to=USD",
+        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`,
       );
-      const json = await res.json();
-      setAmount(json);
+      const data = await res.json();
+      setRate(data.rates[toCurrency]);
     }
-    //clean up function later
+
     fetchData();
-  }, []);
+  }, [amount, fromCurrency, toCurrency]);
 
   return (
-    <div className={styles.App}>
-      <input type="number" value={amount} onChange={handleInput} />
+    <div>
+      <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
       <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
-        <option value="EUR">EUR</option>
         <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
@@ -37,9 +34,7 @@ function ConverterTask() {
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <p>OUTPUT</p>
+      <p>{rate} {toCurrency}</p>
     </div>
   );
 }
-
-export default ConverterTask;
