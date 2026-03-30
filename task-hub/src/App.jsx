@@ -16,7 +16,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/tasks/:taskId" element={<TaskPage />} />
+        <Route path="/tasks/:taskId/*" element={<TaskPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

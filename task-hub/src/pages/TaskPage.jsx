@@ -1,6 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import { tasks } from "../data/tasks";
+import CardLibraryTask from "../tasks/card-library/CardLibraryTask";
+import EcommerceTask from "../tasks/ecommerce/EcommerceTask";
+import PersonalCardTask from "../tasks/personal-card/PersonalCardTask";
 import ShopCartTask from "../tasks/shop-cart/ShopCartTask";
+import YtCourseViteTask from "../tasks/yt-course-vite/YtCourseViteTask";
 
 const migrationChecklist = [
   "Copy the needed components from your old app into this project.",
@@ -12,6 +16,14 @@ const migrationChecklist = [
 function TaskPage() {
   const { taskId } = useParams();
   const task = tasks.find((item) => item.id === taskId);
+
+  const migratedTaskComponents = {
+    "card-library": <CardLibraryTask />,
+    "ecommerce-frontend": <EcommerceTask />,
+    "personal-card": <PersonalCardTask />,
+    "shop-cart": <ShopCartTask />,
+    "yt-course-vite": <YtCourseViteTask />,
+  };
 
   if (!task) {
     return (
@@ -27,7 +39,7 @@ function TaskPage() {
     );
   }
 
-  if (task.id === "shop-cart") {
+  if (migratedTaskComponents[task.id]) {
     return (
       <section className="stack">
         <section className="panel">
@@ -42,7 +54,7 @@ function TaskPage() {
           </div>
         </section>
 
-        <ShopCartTask />
+        {migratedTaskComponents[task.id]}
       </section>
     );
   }

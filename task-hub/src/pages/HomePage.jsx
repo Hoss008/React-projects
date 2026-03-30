@@ -14,7 +14,7 @@ function HomePage() {
         <div className="task-grid">
           {tasks.map((task) => (
             <article key={task.id} className="task-card">
-              <span className="pill">/{task.id}</span>
+              <span className="pill">/tasks/{task.id}</span>
               <h3>{task.title}</h3>
               <p>{task.summary}</p>
               <div className="actions">
