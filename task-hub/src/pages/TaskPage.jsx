@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { tasks } from "../data/tasks";
 import CardLibraryTask from "../tasks/card-library/CardLibraryTask";
+import ConverterTask from "../tasks/currency-converter/Converter";
 import EcommerceTask from "../tasks/ecommerce/EcommerceTask";
 import PersonalCardTask from "../tasks/personal-card/PersonalCardTask";
 import ShopCartTask from "../tasks/shop-cart/ShopCartTask";
@@ -19,6 +20,7 @@ function TaskPage() {
 
   const migratedTaskComponents = {
     "card-library": <CardLibraryTask />,
+    "currency-converter": <ConverterTask />,
     "ecommerce-frontend": <EcommerceTask />,
     "personal-card": <PersonalCardTask />,
     "shop-cart": <ShopCartTask />,

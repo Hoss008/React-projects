@@ -29,4 +29,10 @@ export const tasks = [
     summary: "Chat UI and component practice from YouTube course.",
     sourcePath: "YT-course-vite",
   },
+  {
+    id: "currency-converter",
+    title: "Currency Converter",
+    summary: "Convert amounts between currencies with live exchange rates.",
+    sourcePath: "task-hub/src/tasks/currency-converter",
+  },
 ];
