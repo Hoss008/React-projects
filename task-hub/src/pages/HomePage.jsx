@@ -7,8 +7,8 @@ function HomePage() {
       <div className="panel">
         <h2>Your Tasks</h2>
         <p className="muted">
-          Open any route now, then migrate that task into this same app when you
-          are ready.
+          Every listed task is now migrated into this app. Open any route
+          directly from here.
         </p>
 
         <div className="task-grid">

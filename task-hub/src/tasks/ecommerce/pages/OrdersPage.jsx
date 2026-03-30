@@ -7,12 +7,16 @@ import "./OrdersPage.css";
 function OrdersPage({ cartItems }) {
   const [orders, setOrders] = useState([]);
 
+  const resolveImagePath = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http") || path.startsWith("/")) return path;
+    return `/${path}`;
+  };
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/orders?expand=products")
-      .then((response) => {
-        setOrders(response.data);
-      });
+    axios.get("/api/orders?expand=products").then((response) => {
+      setOrders(response.data);
+    });
   }, []);
 
   const formatDate = (timeMs) => {
@@ -56,7 +60,9 @@ function OrdersPage({ cartItems }) {
                 {order.products?.map((orderProduct) => (
                   <Fragment key={orderProduct.productId}>
                     <div className="product-image-container">
-                      <img src={orderProduct.product?.image} />
+                      <img
+                        src={resolveImagePath(orderProduct.product?.image)}
+                      />
                     </div>
 
                     <div className="product-details">
@@ -73,18 +79,19 @@ function OrdersPage({ cartItems }) {
                       <button className="buy-again-button button-primary">
                         <img
                           className="buy-again-icon"
-                          src="images/icons/buy-again.png"
+                          src="/images/icons/buy-again.png"
                         />
                         <span className="buy-again-message">Add to Cart</span>
                       </button>
                     </div>
 
                     <div className="product-actions">
-                      <a href="/tracking">
-                        <button className="track-package-button button-secondary">
-                          Track package
-                        </button>
-                      </a>
+                      <button
+                        type="button"
+                        className="track-package-button button-secondary"
+                      >
+                        Track package
+                      </button>
                     </div>
                   </Fragment>
                 ))}

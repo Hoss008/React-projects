@@ -7,6 +7,13 @@ import { formatMoney } from "../utils/money";
 function HomePage({ cartItems, onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [selectedQuantities, setSelectedQuantities] = useState({});
+
+  const resolveImagePath = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http") || path.startsWith("/")) return path;
+    return `/${path}`;
+  };
+
   useEffect(() => {
     const getHomeData = async () => {
       try {
@@ -46,7 +53,10 @@ function HomePage({ cartItems, onAddToCart }) {
           {products.map((product) => (
             <div key={product.id} className="product-container">
               <div className="product-image-container">
-                <img className="product-image" src={product.image} />
+                <img
+                  className="product-image"
+                  src={resolveImagePath(product.image)}
+                />
               </div>
 
               <div className="product-name limit-text-to-2-lines">
@@ -56,7 +66,7 @@ function HomePage({ cartItems, onAddToCart }) {
               <div className="product-rating-container">
                 <img
                   className="product-rating-stars"
-                  src={`images/ratings/rating-${product.rating.stars * 10}.png`}
+                  src={`/images/ratings/rating-${product.rating.stars * 10}.png`}
                 />
                 <div className="product-rating-count link-primary">
                   {product.rating.count}
@@ -90,7 +100,7 @@ function HomePage({ cartItems, onAddToCart }) {
               <div className="product-spacer"></div>
 
               <div className="added-to-cart">
-                <img src="images/icons/checkmark.png" />
+                <img src="/images/icons/checkmark.png" />
                 Added
               </div>
 

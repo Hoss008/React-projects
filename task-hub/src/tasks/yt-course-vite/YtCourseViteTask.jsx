@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ChatMessages from "./components/ChatMessages";
 import ChatInput from "./components/ChatInput";
-import "./App.css";
+import "./chatbot.css";
 
-function App() {
+function YtCourseViteTask() {
   const [chatMessages, setChatMessages] = useState([
     {
       message: "hello chatbot",
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default YtCourseViteTask;

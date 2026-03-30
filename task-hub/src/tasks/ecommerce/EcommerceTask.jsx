@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrdersPage from "./pages/OrdersPage";
 
-function App() {
+function EcommerceTask() {
   const [cartItems, setCartItems] = useState([]);
 
   const fetchCartItems = async () => {
@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="ecom-task">
       <Routes>
         <Route
           index
@@ -63,8 +63,8 @@ function App() {
         />
         <Route path="orders" element={<OrdersPage cartItems={cartItems} />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
-export default App;
+export default EcommerceTask;

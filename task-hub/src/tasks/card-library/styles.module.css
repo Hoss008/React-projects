@@ -1,3 +1,10 @@
+.libraryLayout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: start;
+}
+
 .card {
   background: #111;
   color: #fff;
@@ -5,7 +12,10 @@
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   margin-bottom: 20px;
   transition: transform 0.2s ease;
 }

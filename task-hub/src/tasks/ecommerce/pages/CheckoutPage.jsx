@@ -1,7 +1,8 @@
 import "./CheckoutPage.css";
-import "./Checkout-header.css";
+import "./checkout-header.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { formatMoney } from "../utils/money";
 
 function CheckoutPage({
@@ -10,6 +11,9 @@ function CheckoutPage({
   onDeleteCartItem,
   onUpdateDeliveryOption,
 }) {
+  const { taskId } = useParams();
+  const basePath = `/tasks/${taskId ?? "ecommerce-frontend"}`;
+
   const [deliveryOption, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState({
     totalItems: 0,
@@ -19,6 +23,12 @@ function CheckoutPage({
     taxCents: 0,
     totalCostCents: 0,
   });
+
+  const resolveImagePath = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http") || path.startsWith("/")) return path;
+    return `/${path}`;
+  };
 
   useEffect(() => {
     axios
@@ -77,22 +87,22 @@ function CheckoutPage({
       <div className="checkout-header">
         <div className="header-content">
           <div className="checkout-header-left-section">
-            <a href="/">
-              <img className="logo" src="images/logo.png" />
-              <img className="mobile-logo" src="images/mobile-logo.png" />
-            </a>
+            <Link to={basePath}>
+              <img className="logo" src="/images/logo.png" />
+              <img className="mobile-logo" src="/images/mobile-logo.png" />
+            </Link>
           </div>
 
           <div className="checkout-header-middle-section">
             Checkout (
-            <a className="return-to-home-link" href="/">
+            <Link className="return-to-home-link" to={basePath}>
               {totalItems} items
-            </a>
+            </Link>
             )
           </div>
 
           <div className="checkout-header-right-section">
-            <img src="images/icons/checkout-lock-icon.png" />
+            <img src="/images/icons/checkout-lock-icon.png" />
           </div>
         </div>
       </div>
@@ -122,7 +132,10 @@ function CheckoutPage({
                   </div>
 
                   <div className="cart-item-details-grid">
-                    <img className="product-image" src={item.product.image} />
+                    <img
+                      className="product-image"
+                      src={resolveImagePath(item.product.image)}
+                    />
 
                     <div className="cart-item-details">
                       <div className="product-name">{item.product.name}</div>

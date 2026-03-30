@@ -44,12 +44,13 @@ function BlogCard({ title, summary, date }) {
   );
 }
 
-export default function App() {
+function CardLibraryTask() {
   return (
-    <>
+    <div className={styles.libraryLayout}>
       <ProductCard title="MacBook Air M4" price={99} isAvailable={true} />
       <ProductCard title="MacBook Air M5" price={150} isAvailable={false} />
       <UserCard
+        name="Hossam Hassan"
         role="Developer"
         bio="React JS Developer Will Join The FAANG Soon ISA"
       />
@@ -58,9 +59,8 @@ export default function App() {
         summary="My journey from basics to building real-world applications with React."
         date="March 2026"
       />
-    </>
+    </div>
   );
 }
- // 2 different ways for creating props ?
-      // <ProductCard title={tile} price={price} ??? and the child renders the contnet />
- // 
+
+export default CardLibraryTask;
