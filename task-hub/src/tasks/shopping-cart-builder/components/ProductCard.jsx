@@ -11,7 +11,7 @@ function ProductCard({ product, onAddToCart }) {
       <div className={styles.row}>
         <strong>${product.price.toFixed(2)}</strong>
         <button type="button" onClick={() => onAddToCart(product.id)}>
-          Add
+          Add to Cart
         </button>
       </div>
     </article>

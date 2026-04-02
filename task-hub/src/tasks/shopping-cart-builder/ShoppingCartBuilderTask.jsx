@@ -3,26 +3,38 @@ import CartPanel from "./components/CartPanel";
 import ProductList from "./components/ProductList";
 import { productCatalog } from "./data/products";
 
+const requirementChecklist = [
+  "Products are listed with Add to Cart buttons.",
+  "Cart state lives in the parent component.",
+  "Lift state up to show item count and total price.",
+  "Render a full cart list with Remove actions.",
+  "Update state immutably using the spread operator.",
+];
+
 function ShoppingCartBuilderTask() {
+  // Keep cart state in this parent component when you start coding logic.
   const cartItems = [];
   const totalItems = 0;
   const totalPrice = 0;
 
   const handleAddToCart = () => null;
-  const handleIncrease = () => null;
-  const handleDecrease = () => null;
   const handleRemove = () => null;
-  const handleCheckout = () => null;
 
   return (
     <section className={styles.shell}>
       <header className={styles.header}>
-        <p className={styles.kicker}>Shopping Cart Task</p>
-        <h3>Build Your Cart Logic Here</h3>
+        <p className={styles.kicker}>Week 3 - State and useState</p>
+        <h3>Shopping Cart Task Scaffold</h3>
         <p>
-          This scaffold includes layout and component files only. Add your own
-          state management and cart behavior.
+          File structure and UI are ready. Add your own cart logic on top of
+          this scaffold.
         </p>
+
+        <ul className={styles.requirements}>
+          {requirementChecklist.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </header>
 
       <div className={styles.grid}>
@@ -32,10 +44,7 @@ function ShoppingCartBuilderTask() {
           cartItems={cartItems}
           totalItems={totalItems}
           totalPrice={totalPrice}
-          onIncrease={handleIncrease}
-          onDecrease={handleDecrease}
           onRemove={handleRemove}
-          onCheckout={handleCheckout}
         />
       </div>
     </section>
