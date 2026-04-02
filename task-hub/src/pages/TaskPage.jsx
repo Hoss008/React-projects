@@ -4,6 +4,7 @@ import CardLibraryTask from "../tasks/card-library/CardLibraryTask";
 import ConverterTask from "../tasks/currency-converter/Converter";
 import EcommerceTask from "../tasks/ecommerce/EcommerceTask";
 import PersonalCardTask from "../tasks/personal-card/PersonalCardTask";
+import ShoppingCartBuilderTask from "../tasks/shopping-cart-builder/ShoppingCartBuilderTask";
 import ShopCartTask from "../tasks/shop-cart/ShopCartTask";
 import YtCourseViteTask from "../tasks/yt-course-vite/YtCourseViteTask";
 
@@ -23,6 +24,7 @@ function TaskPage() {
     "currency-converter": <ConverterTask />,
     "ecommerce-frontend": <EcommerceTask />,
     "personal-card": <PersonalCardTask />,
+    "shopping-cart-builder": <ShoppingCartBuilderTask />,
     "shop-cart": <ShopCartTask />,
     "yt-course-vite": <YtCourseViteTask />,
   };

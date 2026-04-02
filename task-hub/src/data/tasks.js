@@ -1,5 +1,11 @@
 export const tasks = [
   {
+    id: "shopping-cart-builder",
+    title: "Shopping Cart Builder",
+    summary: "File scaffold for your own shopping cart implementation.",
+    sourcePath: "task-hub/src/tasks/shopping-cart-builder",
+  },
+  {
     id: "card-library",
     title: "Card Library",
     summary: "Reusable card components and styling practice.",

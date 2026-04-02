@@ -1,0 +1,98 @@
+.panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(13, 18, 34, 0.92);
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panelHeader h4 {
+  margin: 0;
+}
+
+.panelHeader span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.65rem;
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.card h4 {
+  margin: 0;
+}
+
+.card p {
+  margin: 0.25rem 0 0;
+  color: rgba(232, 238, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.inlineActions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.panel button {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  cursor: pointer;
+}
+
+.summary {
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 0.65rem;
+}
+
+.summary p {
+  margin: 0;
+}
+
+.summary p + p {
+  margin-top: 0.3rem;
+}
+
+.empty {
+  margin: 0;
+  color: rgba(232, 238, 255, 0.75);
+}
+
+.checkout {
+  width: 100%;
+  padding: 0.55rem;
+}
