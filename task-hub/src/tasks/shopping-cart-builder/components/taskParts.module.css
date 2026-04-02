@@ -1,0 +1,107 @@
+.panel {
+  border: 1px solid rgba(198, 255, 0, 0.14);
+  border-radius: 14px;
+  background: #1b2238;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.8rem;
+  color: #eff4ff;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panelHeader h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.panelHeader span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(198, 255, 0, 0.4);
+  background: rgba(198, 255, 0, 0.09);
+}
+
+.list {
+  display: grid;
+  gap: 0.55rem;
+  min-height: 84px;
+}
+
+.card {
+  border: 1px solid rgba(198, 255, 0, 0.1);
+  border-radius: 12px;
+  padding: 0.65rem;
+  background: rgba(255, 255, 255, 0.02);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.card h4 {
+  margin: 0;
+  color: #f5f8ff;
+}
+
+.card p {
+  margin: 0.25rem 0 0;
+  color: rgba(221, 230, 248, 0.85);
+  font-size: 0.9rem;
+}
+
+.price {
+  color: #9bc2ff;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.panel button {
+  border: 1px solid rgba(198, 255, 0, 0.4);
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  background: rgba(198, 255, 0, 0.12);
+  color: #f4f9ff;
+  cursor: pointer;
+}
+
+.summary {
+  border: 1px dashed rgba(155, 194, 255, 0.38);
+  border-radius: 10px;
+  padding: 0.65rem;
+}
+
+.summary p {
+  margin: 0;
+}
+
+.summary p + p {
+  margin-top: 0.3rem;
+}
+
+.empty {
+  margin: 0;
+  color: rgba(226, 234, 249, 0.8);
+}
+
+.helperText {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(214, 223, 240, 0.8);
+}
+
+.removeButton {
+  border-color: rgba(255, 129, 129, 0.7) !important;
+  background: rgba(255, 129, 129, 0.2) !important;
+}
